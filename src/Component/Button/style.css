@@ -1,0 +1,13 @@
+.buttonStyleBasic {
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    padding: 10px 15px;
+    min-width: 100px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.buttonStyleBasic:disabled {
+    cursor: initial;
+}
