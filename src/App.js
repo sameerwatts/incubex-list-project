@@ -1,12 +1,13 @@
-import React from 'react';
-import './App.css';
+import React, { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      Incubex
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div className="header">
+        fs
+      </div>
+    );
+  }
 }
 
 export default App;
