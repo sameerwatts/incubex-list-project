@@ -1,22 +1,68 @@
 import React from 'react';
-import {Formik, Form} from 'formik';
+import { Formik, Form } from 'formik';
 import '../style.css';
+import * as Yup from 'yup';
+import Button from '../../Button';
+import FormikControl from '../../Formik/FormikControl';
 
 const initialValues = {
-
+    userId: '',
+    title: '',
+    body: ''
 }
 
-const validationSchema = {};
+const validationSchema = Yup.object({
+    userId: Yup.string().required("Required!"),
+    title: Yup.string().required("Required!"),
+    body: Yup.string().required("Required!")
+});
 
 
 const AddForm = (props) => {
+    const onSubmit = values => {
+        console.log(values);
+    }
+
+
     return (
-        <div>
-            <div className="cardHeadings d-flex justify-between align-center mb-20">
-                <h3 className="fw-normal">Add</h3>
-                <button type="reset" className="close-button">&times;</button>
-            </div>
-        </div>
+        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+            <Form className="form d-flex flex-column justify-between">
+                <div>
+                    <div className="cardHeadings d-flex justify-between align-center mb-20">
+                        <h3 className="fw-normal">Add</h3>
+                        <button type="reset" className="close-button" onClick={props.popupModalHandler}>&times;</button>
+                    </div>
+
+                    <FormikControl
+                        type="text"
+                        placeholder="Enter user Id"
+                        name="userId"
+                        className="fs-14 customInput"
+                        control="input"
+                        errClass="error"
+                    />
+                    <FormikControl
+                        type="text"
+                        placeholder="Title"
+                        name="title"
+                        className="fs-14 customInput"
+                        control="input"
+                        errClass="error"
+                    />
+                    <FormikControl
+                        type="text"
+                        placeholder="Body"
+                        name="body"
+                        className="fs-14 customInput"
+                        control="input"
+                        errClass="error"
+                    />
+                </div>
+                <div className="d-flex justify-center" >
+                    <Button btnText="Add" type="submit" className="submitFormButton" />
+                </div>
+            </Form>
+        </Formik>
     );
 };
 

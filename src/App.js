@@ -9,7 +9,6 @@ const App = (props) => {
   const [clicked, setClicked] = useState(false);
   const [formType, setFormType] = useState('');
   const popupModalHandler = (type) => {
-    console.log('test');
     setFormType(type)
     setClicked(prevState => !prevState)
   }
@@ -20,7 +19,7 @@ const App = (props) => {
     <div className='pageWrapper'>
       <Nav popupModalHandler={popupModalHandler} formType={formTypeHandler} clicked={clicked} />
       <PopupModal clicked={clicked}>
-        {formType === 'Add' && <AddForm /> }
+        {formType === 'Add' && <AddForm popupModalHandler={popupModalHandler} /> }
         {formType === 'Update' && <UpdateForm /> }
       </PopupModal>
     </div >
