@@ -1,17 +1,82 @@
 import React from 'react';
-import loadingGif from "../../../assets/images/loading.gif";
+import { Formik, Form } from 'formik';
+import '../style.css';
+import * as Yup from 'yup';
+import Button from '../../Button';
+import FormikControl from '../../Formik/FormikControl';
+import axios from 'axios';
 
-const UpdateForm = () => {
+
+const initialValues = {
+    userId: '',
+    title: '',
+    body: ''
+}
+
+
+
+const validationSchema = Yup.object({
+    userId: Yup.number().typeError('You must specify a number').required("Required!"),
+    title: Yup.string().required("Required!"),
+    body: Yup.string().required("Required!")
+});
+
+
+const UpdateForm = ({ id, popupModalHandler }) => {
+    const onSubmit = (values) => {
+        const {userId, title, body} = values;
+        axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+            userId,
+            title,
+            body,
+        })
+        .then(res => {
+            console.log(res.data);
+            popupModalHandler();
+        })
+        .catch(err => console.log(err));
+    }
+
+
     return (
-        <div>
-            <div className="cardHeadings d-flex justify-between align-center mb-20">
-                <h3 className="fw-normal">Update</h3>
-                <div className="d-flex justify-center align-center">
-                    <img src={loadingGif} alt="Flowers in Chania"></img>
+        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+            <Form className="form d-flex flex-column justify-between">
+                <div>
+                    <div className="cardHeadings d-flex justify-between align-center mb-20">
+                        <h3 className="fw-normal">Update id: {id} </h3>
+                        <button type="reset" className="close-button" onClick={popupModalHandler}>&times;</button>
+                    </div>
+
+                    <FormikControl
+                        type="text"
+                        placeholder="Enter user Id"
+                        name="userId"
+                        className="fs-14 customInput"
+                        control="input"
+                        errClass="error"
+                    />
+                    <FormikControl
+                        type="text"
+                        placeholder="Title"
+                        name="title"
+                        className="fs-14 customInput"
+                        control="input"
+                        errClass="error"
+                    />
+                    <FormikControl
+                        type="text"
+                        placeholder="Body"
+                        name="body"
+                        className="fs-14 customInput"
+                        control="input"
+                        errClass="error"
+                    />
                 </div>
-                <button type="reset" className="close-button">&times;</button>
-            </div>
-        </div>
+                <div className="d-flex justify-center" >
+                    <Button btnText="Update" type="submit" className="submitFormButton" />
+                </div>
+            </Form>
+        </Formik>
     );
 };
 

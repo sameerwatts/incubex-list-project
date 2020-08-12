@@ -4,6 +4,7 @@ import '../style.css';
 import * as Yup from 'yup';
 import Button from '../../Button';
 import FormikControl from '../../Formik/FormikControl';
+import axios from 'axios';
 
 const initialValues = {
     userId: '',
@@ -12,15 +13,26 @@ const initialValues = {
 }
 
 const validationSchema = Yup.object({
-    userId: Yup.string().required("Required!"),
+    userId: Yup.number().typeError('You must specify a number').required("Required!"),
     title: Yup.string().required("Required!"),
     body: Yup.string().required("Required!")
 });
 
 
-const AddForm = (props) => {
+const AddForm = ({popupModalHandler}) => {
     const onSubmit = values => {
-        console.log(values);
+        const {userId, title, body} = values;
+        axios.post(`https://jsonplaceholder.typicode.com/posts`, {
+            userId,
+            title,
+            body,
+        })
+        .then(res => {
+            // return <DataTile details={res.data} />
+            console.log(res.data);
+            popupModalHandler();
+        })
+        .catch(err => console.log(err));
     }
 
 
@@ -30,7 +42,7 @@ const AddForm = (props) => {
                 <div>
                     <div className="cardHeadings d-flex justify-between align-center mb-20">
                         <h3 className="fw-normal">Add</h3>
-                        <button type="reset" className="close-button" onClick={props.popupModalHandler}>&times;</button>
+                        <button type="reset" className="close-button" onClick={popupModalHandler}>&times;</button>
                     </div>
 
                     <FormikControl

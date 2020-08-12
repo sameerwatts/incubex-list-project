@@ -1,0 +1,20 @@
+.deleteContainer {
+    width: 400px;
+    margin: 0 auto;
+    height: 100%;
+    text-align: center;
+}
+
+.DeleteTitle {
+    font-size: 30px;
+    height: 50%;
+    margin-bottom: 20px;
+}
+
+.deleteButton {
+    background-color: var(--blue);
+    color: #ffffff;
+    margin: 20px 0px;
+    padding: 15px 15px;
+    font-size: 16px;
+}
