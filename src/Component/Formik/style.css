@@ -1,0 +1,33 @@
+input[type="text"].customInput {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    color: #000;
+    background-color: #fff;
+    border: 2px solid #dfe3e9;
+    border-radius: 5px;
+    margin: 5px auto;
+    font-family: inherit;
+}
+
+input[type="text"].customInput::placeholder {
+    color: #acacac;
+}
+
+.form-control {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.error {
+    position: absolute;
+    bottom: -20px;
+    color: red;
+    text-align: left;
+}
+
+@media only screen and (min-width: 767px) {
+    input[type="text"].customInput {
+        width: 400px;
+    }
+}
