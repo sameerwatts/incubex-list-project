@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import './App.css';
 import Nav from './Component/Nav';
 import PopupModal from './Component/PopupModal';
-import AddForm from './Component/AddForm';
-import UpdateForm from './Component/UpdateForm';
+import AddForm from './Component/Forms/AddForm';
+import UpdateForm from './Component/Forms/UpdateForm';
 const App = (props) => {
   const [clicked, setClicked] = useState(false);
   const [formType, setFormType] = useState('');
