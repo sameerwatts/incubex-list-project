@@ -75,7 +75,7 @@ const App = (props) => {
         <SectionWrapper>
           <div className="dataTiles">
             {
-              <div className="dataTiles-inner" style={{ width: '100%', height: '70vh' }}>
+              <div className="dataTiles-inner" style={{ width: '100%', height: '80vh' }}>
                 <AutoSizer>
                   {
                     ({ width, height }) => (
