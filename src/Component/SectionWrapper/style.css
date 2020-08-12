@@ -1,0 +1,32 @@
+.sectionWrapper {
+    min-height: calc(100vh - 120px);
+    height: auto;
+    /* background-color: var(--ter-grey); */
+}
+
+.sectionWrapperInner {
+    width: 90%;
+    margin: auto;
+    padding: 50px 0px;
+}
+
+@media only screen and (min-width: 768px) {
+    .sectionWrapperInner {
+        max-width: 600px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .sectionWrapper {
+        min-height: calc(100vh - 80px);
+    }
+    .sectionWrapperInner {
+        max-width: 800px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .sectionWrapperInner {
+        max-width: 1024px;
+    }
+}
