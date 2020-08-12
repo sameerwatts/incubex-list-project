@@ -22,7 +22,7 @@ const validationSchema = Yup.object({
 });
 
 
-const UpdateForm = ({ id, popupModalHandler }) => {
+const UpdateForm = ({ id, popupModalHandler, renderPage }) => {
     const onSubmit = (values) => {
         const {userId, title, body} = values;
         axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, {
@@ -33,6 +33,7 @@ const UpdateForm = ({ id, popupModalHandler }) => {
         .then(res => {
             console.log(res.data);
             popupModalHandler();
+            renderPage();
         })
         .catch(err => console.log(err));
     }
@@ -68,7 +69,7 @@ const UpdateForm = ({ id, popupModalHandler }) => {
                         placeholder="Body"
                         name="body"
                         className="fs-14 customInput"
-                        control="input"
+                        control="textarea"
                         errClass="error"
                     />
                 </div>

@@ -1,4 +1,4 @@
-input[type="text"].customInput {
+input[type="text"].customInput, textarea.customInput {
     display: block;
     width: 100%;
     padding: 18px;
@@ -10,7 +10,7 @@ input[type="text"].customInput {
     font-family: inherit;
 }
 
-input[type="text"].customInput::placeholder {
+input[type="text"].customInput::placeholder, textarea.customInput::placeholder {
     color: #acacac;
 }
 
@@ -27,7 +27,7 @@ input[type="text"].customInput::placeholder {
 }
 
 @media only screen and (min-width: 767px) {
-    input[type="text"].customInput {
+    input[type="text"].customInput, textarea.customInput {
         width: 400px;
     }
 }

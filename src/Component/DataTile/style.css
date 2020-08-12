@@ -1,7 +1,6 @@
 .dataTiles {
     position: relative;
     background-color: #ffffff;
-    padding: 40px 0px;
     border-radius: 10px;
     max-height: calc( 100vh - 184px);
     height: 100%;

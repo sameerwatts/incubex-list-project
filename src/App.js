@@ -17,6 +17,7 @@ const App = (props) => {
   const [formType, setFormType] = useState('');
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [render, setRender] = useState(true);
   const [id, setId] = useState('');
 
   const cache = React.useRef(new CellMeasurerCache({
@@ -26,13 +27,17 @@ const App = (props) => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-
-      const res = await axios.get('https://jsonplaceholder.typicode.com/posts')
-      console.log(res.data);
-      setPosts(res.data);
+      try {
+        const res = await axios.get('https://jsonplaceholder.typicode.com/posts')
+        console.log(res.data);
+        setPosts(res.data);
+      }
+      catch(err) {
+        console.log(err);
+      }
     }
     fetchPosts();
-  }, [clicked, id]);
+  }, [render]);
 
   const popupModalHandler = (type) => {
     setFormType(type)
@@ -45,6 +50,7 @@ const App = (props) => {
         setLoading(false);
         console.log(res.data);
         popupModalHandler('Delete');
+        renderPage()
       })
       .catch(err => {
         setLoading(false);
@@ -63,6 +69,9 @@ const App = (props) => {
     setId(id);
     setClicked(prevState => !prevState)
   }
+  const renderPage = () => {
+    setRender(prevState => !prevState)
+  }
 
   return (
     <div className='pageWrapper'>
@@ -75,7 +84,7 @@ const App = (props) => {
         <SectionWrapper>
           <div className="dataTiles">
             {
-              <div className="dataTiles-inner" style={{ width: '100%', height: '70vh' }}>
+              <div className="dataTiles-inner" style={{ width: '100%', height: '80vh' }}>
                 <AutoSizer>
                   {
                     ({ width, height }) => (
@@ -106,8 +115,8 @@ const App = (props) => {
       </Suspense>
 
       <PopupModal clicked={clicked} type={formType}>
-        {formType === 'Add' && <AddForm popupModalHandler={popupModalHandler} />}
-        {formType === 'Update' && <UpdateForm id={id} popupModalHandler={popupModalHandler} />}
+        {formType === 'Add' && <AddForm popupModalHandler={popupModalHandler} renderPage={renderPage} />}
+        {formType === 'Update' && <UpdateForm id={id} popupModalHandler={popupModalHandler} renderPage={renderPage}/>}
         {formType === 'Delete' && <DeletePopup id={id} popupModalHandler={popupModalHandler} deletePostById={deletePostById} disabled={loading} />}
       </PopupModal>
     </div >
