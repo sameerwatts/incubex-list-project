@@ -13,7 +13,7 @@ const initialValues = {
 }
 
 const validationSchema = Yup.object({
-    userId: Yup.string().required("Required!"),
+    userId: Yup.number().typeError('You must specify a number').required("Required!"),
     title: Yup.string().required("Required!"),
     body: Yup.string().required("Required!")
 });
