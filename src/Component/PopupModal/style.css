@@ -26,6 +26,10 @@
     transition: all 0.7s ease-in-out;
 }
 
+.deletePopup {
+    height: auto !important;
+}
+
 .overlay.active {
     z-index: 9 !important;
     background-color: rgba(0, 0, 0, 0.5);
