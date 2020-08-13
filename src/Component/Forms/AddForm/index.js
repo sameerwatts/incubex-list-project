@@ -46,7 +46,7 @@ const AddForm = ({ popupModalHandler, renderPage, updateError }) => {
             <Form className="form d-flex flex-column justify-between">
                 <div>
                     <div className="cardHeadings d-flex justify-between align-center mb-20">
-                        <h3 className="fw-normal">Add</h3>
+                        <h3 className="fw-normal">Add New Post</h3>
                         <button type="reset" className="close-button" onClick={popupModalHandler}>&times;</button>
                     </div>
 

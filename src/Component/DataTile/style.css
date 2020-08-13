@@ -17,7 +17,7 @@
 }
 
 .data-cards {
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid lightgray;
     padding: 0px 20px;
 }
 
@@ -31,7 +31,7 @@
 
 .userHeading {
     font-size: 18px;
-    color: var(--yellow);
+    color: var(--blue);
     margin-bottom: 10px;
 }
 
