@@ -16,7 +16,7 @@ input[type="text"].customInput::placeholder, textarea.customInput::placeholder {
 
 .form-control {
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .error {
