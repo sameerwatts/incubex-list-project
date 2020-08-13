@@ -1,4 +1,5 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
+import { useToasts } from 'react-toast-notifications'
 import axios from 'axios';
 import './App.css';
 import Nav from './Component/Nav';
@@ -22,6 +23,7 @@ const App = (props) => {
   const [id, setId] = useState('');
   const [error, setError] = useState(0);
 
+  const { addToast } = useToasts()
   const cache = React.useRef(new CellMeasurerCache({
     fixedWidth: true,
     defaultHeight: 100,
@@ -55,12 +57,14 @@ const App = (props) => {
         console.log(res.data);
         popupModalHandler('Delete');
         updateError(false)
+        addToast('Deleted Successfully', { appearance: 'success',autoDismiss: true })
         renderPage()
       })
       .catch(err => {
         setLoading(false);
         popupModalHandler('Delete');
         updateError(err.response.status);
+        addToast(err.message, { appearance: 'error',autoDismiss: true })
         return console.log(err);
       })
   }
