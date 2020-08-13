@@ -19,21 +19,25 @@ const validationSchema = Yup.object({
 });
 
 
-const AddForm = ({popupModalHandler, renderPage}) => {
+const AddForm = ({ popupModalHandler, renderPage, updateError }) => {
     const onSubmit = values => {
-        const {userId, title, body} = values;
+        const { userId, title, body } = values;
         axios.post(`https://jsonplaceholder.typicode.com/posts`, {
             userId,
             title,
             body,
         })
-        .then(res => {
-            // return <DataTile details={res.data} />
-            console.log(res.data);
-            popupModalHandler();
-            renderPage()
-        })
-        .catch(err => console.log(err));
+            .then(res => {
+                // return <DataTile details={res.data} />
+                console.log(res.data);
+                popupModalHandler();
+                renderPage()
+            })
+            .catch(err => {
+                popupModalHandler();
+                updateError(err.response.status)
+                console.log(err);
+            });
     }
 
 
